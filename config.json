@@ -1,8 +1,0 @@
-{
-	"gen.APP_NAME": "Tweet-Toot",
-	"gen.log_timestamp": "%Y-%m-%d %H:%M:%S",
-	"tweets.source_account_url": "https://twitter.com/EuroSciPy",
-	"toots.host_instance": "https://botsin.space",
-	"toots.app_secure_token": "8z1O8G4H2zkSEy7g7hrIwrO8317ZcjF6vv5Uo76RS-o",
-	"toots.cache_path": "/tmp/"
-}

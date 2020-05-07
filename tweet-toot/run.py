@@ -29,10 +29,10 @@ if __name__ == "__main__":
 
     else:
 
-        logger.info(f"__main__ => {len(tweets)} tweets fetched.")
+        logger.info("__main__ => {} tweets fetched.".format(len(tweets)))
 
         for tweet in tweets:
             if social.toot_the_tweet(tweet):
-                logger.info(f'__main__ => Tooted "{tweet["text"]}"')
+                logger.info('__main__ => Tooted "{}"'.format(tweet["text"]))
                 logger.info("__main__ => Tooting less is tooting more. Sleeping...")
                 sys.exit()
