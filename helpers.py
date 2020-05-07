@@ -38,7 +38,7 @@ def _info(message):
     Arguments:
     message {string} -- Log message.
     """
-    print(f" _info > {message}")
+    print(" _info > {}".format(message))
 
 
 def _error(message):
@@ -47,7 +47,7 @@ def _error(message):
     Arguments:
     message {string} -- Log message.
     """
-    print(f" _error > {message}")
+    print(" _error > {}".format(message))
 
 
 def _read_file(path):
@@ -67,7 +67,7 @@ def _read_file(path):
         file = open(path)
         data = file.read()
         file.close()
-    
+
     except Exception as e:
 
         _error("Exception reading file.")

@@ -18,7 +18,7 @@ def getTweets():
 
     if not url:
         helpers._error(
-            f"getTweets() => The source Twitter account URL ({url}) was incorrect. Could not retrieve tweets."
+            "getTweets() => The source Twitter account URL ({}) was incorrect. Could not retrieve tweets.".format(url)
         )
         return False
 
@@ -33,11 +33,11 @@ def getTweets():
 
     if timeline is None:
         helpers._error(
-            f"getTweets() => Could not retrieve tweets from the page. Please make sure the source Twitter account URL ({url}) is correct."
+            "getTweets() => Could not retrieve tweets from the page. Please make sure the source Twitter account URL ({}) is correct.".format(url)
         )
         return False
 
-    helpers._info(f"getTweets() => Fetched tweets for {url}.")
+    helpers._info("getTweets() => Fetched tweets for {}.".format(url))
 
     for tweet in timeline:
 
@@ -75,7 +75,7 @@ def tootTheTweet(tweet):
 
     if not host_instance:
         helpers._error(
-            f"tootTheTweet() => Your host Mastodon instance URL ({host_instance}) was incorrect."
+            "tootTheTweet() => Your host Mastodon instance URL ({}) was incorrect.".format(host_instance)
         )
         return False
 
@@ -93,7 +93,7 @@ def tootTheTweet(tweet):
     last_timestamp = int(last_timestamp)
 
     headers = {}
-    headers["Authorization"] = f"Bearer {token}"
+    headers["Authorization"] = "Bearer {}".format(token)
     headers["Idempotency-Key"] = tweet["id"]
 
     data = {}
@@ -108,20 +108,20 @@ def tootTheTweet(tweet):
 
     last_timestamp = helpers._write_file(timestamp_file, str(tweet["time"]))
 
-    helpers._info(f'tootTheTweet() => New tweet {tweet["id"]} => "{tweet["text"]}".')
+    helpers._info('tootTheTweet() => New tweet {} => "{}".'.format(tweet["id"], tweet["text"]))
 
     response = requests.post(
-        url=f"{host_instance}/api/v1/statuses", data=data, headers=headers
+        url="{}/api/v1/statuses".format(host_instance), data=data, headers=headers
     )
 
     if response.status_code == 200:
-        helpers._info(f"tootTheTweet() => OK. Posted tweet {tweet['id']} to Mastodon.")
-        helpers._info(f"tootTheTweet() => Response: {response.text}")
+        helpers._info("tootTheTweet() => OK. Posted tweet {} to Mastodon.".format(tweet['id']))
+        helpers._info("tootTheTweet() => Response: {}".format(response.text))
         return True
 
     else:
         helpers._info(
-            f"tootTheTweet() => FAIL. Could not post tweet {tweet['id']} to Mastodon."
+            "tootTheTweet() => FAIL. Could not post tweet {} to Mastodon.".format(tweet['id'])
         )
-        helpers._info(f"tootTheTweet() => Response: {response.text}")
+        helpers._info("tootTheTweet() => Response: {}".format(response.text))
         return False

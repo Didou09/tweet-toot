@@ -18,10 +18,10 @@ if __name__ == "__main__":
         helpers._error("__main__ => No tweets fetched.")
         sys.exit()
 
-    helpers._info(f"__main__ => {len(tweets)} tweets fetched.")
+    helpers._info("__main__ => {} tweets fetched.".format(len(tweets)))
 
     for tweet in tweets:
         if social.tootTheTweet(tweet):
-            helpers._info(f'__main__ => Tooted "{tweet["text"]}"')
+            helpers._info('__main__ => Tooted "{}"'.format(tweet["text"]))
             helpers._info("__main__ => Tooting less is tooting more. Sleeping...")
             sys.exit()
