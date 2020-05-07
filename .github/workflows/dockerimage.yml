@@ -1,0 +1,26 @@
+name: Docker Image CI
+
+uses: docker/build-push-action@v1.0.1
+
+on:
+  push:
+    tags: "*"
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Build and push Docker images
+      uses: docker/build-push-action@v1.0.1
+      with:
+        username: $DOCKER_U
+        password: $DOCKER_P
+        repository: ayushsharma22/tweet-toot
+        tag_with_sha: true
+        labels: latest
+        push: true
+
+
